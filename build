@@ -1,0 +1,18 @@
+#!/bin/sh
+
+set -e
+
+upstream_docker_repo=nextcloud
+docker_repo=quiexotic/nextcloud
+
+test $# -ne 1 && echo "Usage: $0 <path_to_docker_library_official_images_repo> " >&2 && exit 1
+library="${1}/library"
+test ! -d "$library" && echo 'Not a valid docker-library/official-images repo' >&2 && exit 1
+test -z "$(which bashbrew)" && echo 'bashbrew need to be installed in $PATH' >&2 && exit 1
+
+tags="$(bashbrew --library "$library" list "$upstream_docker_repo" | cut -d ':' -f 2)"
+
+for tag in $tags; do
+  docker buildx build --build-arg "NEXTCLOUD_VERSION=$tag" -t "${docker_repo}:${tag}" .
+  docker push "${docker_repo}:${tag}"
+done
