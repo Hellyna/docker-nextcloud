@@ -1,0 +1,4 @@
+#!/bin/sh
+
+export DOCKER_BUILDKIT=1
+docker build --build-arg "NEXTCLOUD_VERSION=$DOCKER_TAG" -t "$IMAGE_NAME" .
