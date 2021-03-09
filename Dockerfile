@@ -1,7 +1,7 @@
-ARG DOCKER_TAG
-FROM nextcloud:${DOCKER_TAG}
+ARG NEXTCLOUD_VERSION
+FROM nextcloud:${NEXTCLOUD_VERSION}
 
-ARG S6_OVERLAY_VERSION=2.2.0.1
+ARG S6_OVERLAY_VERSION=2.2.0.3
 ARG TARGETARCH
 
 RUN export _url="https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-${TARGETARCH}.tar.gz" && \
