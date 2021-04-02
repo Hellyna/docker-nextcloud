@@ -13,6 +13,7 @@ test -z "$(which bashbrew)" && echo 'bashbrew need to be installed in $PATH' >&2
 tags="$(bashbrew --library "$library" list "$upstream_docker_repo" | cut -d ':' -f 2)"
 
 for tag in $tags; do
-  docker buildx build --build-arg "NEXTCLOUD_VERSION=$tag" -t "${docker_repo}:${tag}" .
+  export DOCKER_BUILDKIT=1
+  docker build --pull --build-arg "NEXTCLOUD_VERSION=$tag" -t "${docker_repo}:${tag}" .
   docker push "${docker_repo}:${tag}"
 done
