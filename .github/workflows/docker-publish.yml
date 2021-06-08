@@ -51,4 +51,4 @@ jobs:
         run: git clone --depth=1 https://github.com/docker-library/official-images "$HOME/work/docker-official-images"
 
       - name: Run build
-        run: ./build "$HOME/work/docker-official-images"
+        run: ./.github/workflows/docker-build-push "$HOME/work/docker-official-images"
