@@ -3,7 +3,7 @@
 set -xe
 
 upstream_docker_repo=nextcloud
-docker_repos=('quiexotic/nextcloud' 'https://ghcr.io/hellyna/nextcloud')
+docker_repos=( quiexotic/nextcloud https://ghcr.io/hellyna/nextcloud )
 
 test $# -ne 1 && echo "Usage: $0 <path_to_docker_library_official_images_repo> " >&2 && exit 1
 library="${1}/library"
