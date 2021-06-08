@@ -3,7 +3,7 @@
 set -xe
 
 upstream_docker_repo=nextcloud
-docker_repo=(
+docker_repos=(
   quiexotic/nextcloud
   ghcr.io/hellyna/nextcloud
 )
