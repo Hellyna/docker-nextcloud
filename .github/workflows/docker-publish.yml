@@ -53,8 +53,6 @@ jobs:
 
       - name: Run build
         run: ./build "$HOME/work/docker-official-images"
-        env:
-          PATH: "$PATH:$HOME/work/bin"
 
       #- name: Extract Docker metadata from docker.io
       #  id: docker-io-meta
