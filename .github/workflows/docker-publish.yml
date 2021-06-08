@@ -49,7 +49,7 @@ jobs:
         run: git clone --depth=1 https://github.com/docker-library/official-images "$HOME/work/docker-official-images"
 
       - name: Run build
-        run: ./build ../docker-official-images
+        run: ./build "$HOME/work/docker-official-images"
         env:
           PATH: "$PATH:$HOME/work/bin"
 
