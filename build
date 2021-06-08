@@ -9,6 +9,8 @@ test $# -ne 1 && echo "Usage: $0 <path_to_docker_library_official_images_repo> "
 library="${1}/library"
 test ! -d "$library" && echo 'Not a valid docker-library/official-images repo' >&2 && exit 1
 
+echo $PATH
+
 bashbrew --version
 
 if test $? -ne 0; then
