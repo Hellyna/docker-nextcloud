@@ -43,10 +43,10 @@ jobs:
         run: curl -fsSL https://doi-janky.infosiftr.net/job/bashbrew/job/master/lastSuccessfulBuild/artifact/bashbrew-amd64 -o ../bashbrew && chmod +x ../bashbrew
 
       - name: Clone docker official images repo
-        run: git clone --depth=1 https://github.com/docker-library/official-images ../official-images
+        run: git clone --depth=1 https://github.com/docker-library/official-images ../docker-official-images
 
-      #- name: Run build
-      #  run: ./build
+      - name: Run build
+        run: ./build ../docker-official-images
 
       #- name: Extract Docker metadata from docker.io
       #  id: docker-io-meta

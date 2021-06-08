@@ -4,6 +4,7 @@ set -e
 
 upstream_docker_repo=nextcloud
 docker_repo=quiexotic/nextcloud
+bashbrew=../bashbrew
 
 test $# -ne 1 && echo "Usage: $0 <path_to_docker_library_official_images_repo> " >&2 && exit 1
 library="${1}/library"
