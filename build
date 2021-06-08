@@ -3,7 +3,7 @@
 set -xe
 
 upstream_docker_repo=nextcloud
-docker_repo=quiexotic/nextcloud
+docker_repos=(quiexotic/nextcloud https://ghcr.io/hellyna/nextcloud)
 
 test $# -ne 1 && echo "Usage: $0 <path_to_docker_library_official_images_repo> " >&2 && exit 1
 library="${1}/library"
@@ -25,5 +25,7 @@ tags="$(bashbrew --library "$library" list "$upstream_docker_repo" | cut -d ':' 
 for tag in $tags; do
   export DOCKER_BUILDKIT=1
   docker build --pull --build-arg "NEXTCLOUD_VERSION=$tag" -t "${docker_repo}:${tag}" .
-  docker push "${docker_repo}:${tag}"
+  for repo in "${docker_repos[@]}"; do
+    docker push "${repo}:${tag}"
+  done
 done
