@@ -16,7 +16,7 @@ cd "$1"
 git pull
 cd "$repo_dir"
 
-tags="$(bashbrew --library "$library" list "$upstream_docker_repo" | cut -d ':' -f 2)"
+tags="$("$bashbrew" --library "$library" list "$upstream_docker_repo" | cut -d ':' -f 2)"
 
 for tag in $tags; do
   export DOCKER_BUILDKIT=1
