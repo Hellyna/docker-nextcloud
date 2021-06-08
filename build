@@ -10,6 +10,11 @@ library="${1}/library"
 test ! -d "$library" && echo 'Not a valid docker-library/official-images repo' >&2 && exit 1
 test -z "$(which bashbrew)" && echo 'bashbrew need to be installed in $PATH' >&2 && exit 1
 
+repo_dir="$(pwd)"
+cd "$1"
+git pull
+cd "$repo_dir"
+
 tags="$(bashbrew --library "$library" list "$upstream_docker_repo" | cut -d ':' -f 2)"
 
 for tag in $tags; do
