@@ -39,11 +39,14 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Extract Docker metadata from docker.io
-        id: docker-io-meta
-        uses: docker/metadata-action@v3
-        with:
-          images: docker.io/_/nextcloud
+      - name: Run build
+        run: ./build
+
+      #- name: Extract Docker metadata from docker.io
+      #  id: docker-io-meta
+      #  uses: docker/metadata-action@v3
+      #  with:
+      #    images: docker.io/_/nextcloud
           #labels: |
           #  org.opencontainers.image.url=https://github.com/Hellyna/docker-nextcloud
           #  org.opencontainers.image.source=https://github.com/Hellyna/docker-nextcloud
