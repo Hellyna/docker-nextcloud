@@ -43,7 +43,7 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
       - name: Create a new PATH
-        run: mkdir "$HOME/work/bin"
+        run: mkdir "$HOME/work/bin" && echo "$HOME/work/bin" >> $GITHUB_PATH
 
       - name: Get bashbrew
         run: curl -fsSL https://doi-janky.infosiftr.net/job/bashbrew/job/master/lastSuccessfulBuild/artifact/bashbrew-amd64 -o "$HOME/work/bin/bashbrew" && chmod +x "$HOME/work/bin/bashbrew"
