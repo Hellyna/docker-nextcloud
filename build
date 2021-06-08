@@ -8,7 +8,11 @@ docker_repo=quiexotic/nextcloud
 test $# -ne 1 && echo "Usage: $0 <path_to_docker_library_official_images_repo> " >&2 && exit 1
 library="${1}/library"
 test ! -d "$library" && echo 'Not a valid docker-library/official-images repo' >&2 && exit 1
-bashbrew --help >/dev/null 2>&1 || echo 'bashbrew need to be installed in $PATH' >&2 && exit 1
+bashbrew --help >/dev/null 2>&1
+
+if test $? -ne 0; then
+  echo 'bashbrew need to be installed in $PATH' >&2 && exit 1
+fi
 
 repo_dir="$(pwd)"
 cd "$1"
