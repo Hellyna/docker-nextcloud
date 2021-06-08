@@ -39,14 +39,19 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Create a new PATH
+        run: mkdir "$HOME/work/bin"
+
       - name: Get bashbrew
-        run: curl -fsSL https://doi-janky.infosiftr.net/job/bashbrew/job/master/lastSuccessfulBuild/artifact/bashbrew-amd64 -o "$HOME/.local/bin/bashbrew" && chmod +x "$HOME/.local/bin/bashbrew"
+        run: curl -fsSL https://doi-janky.infosiftr.net/job/bashbrew/job/master/lastSuccessfulBuild/artifact/bashbrew-amd64 -o "$HOME/work/bin/bashbrew" && chmod +x "$HOME/work/bin/bashbrew"
 
       - name: Clone docker official images repo
         run: git clone --depth=1 https://github.com/docker-library/official-images ../docker-official-images
 
       - name: Run build
         run: ./build ../docker-official-images
+        env:
+          PATH: "$PATH:$HOME/work/bin"
 
       #- name: Extract Docker metadata from docker.io
       #  id: docker-io-meta
