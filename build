@@ -28,7 +28,7 @@ tags="$(bashbrew --library "$library" list "$upstream_docker_repo" | cut -d ':' 
 for tag in $tags; do
   export DOCKER_BUILDKIT=1
   for repo in "${docker_repos[@]}"; do
-    docker build --pull --build-arg "NEXTCLOUD_VERSION=$tag" -t "${docker_repo}:${tag}" .
+    docker build --pull --build-arg "NEXTCLOUD_VERSION=$tag" -t "${repo}:${tag}" .
     docker push "${repo}:${tag}"
   done
 done
