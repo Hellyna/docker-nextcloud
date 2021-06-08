@@ -46,7 +46,7 @@ jobs:
         run: curl -fsSL https://doi-janky.infosiftr.net/job/bashbrew/job/master/lastSuccessfulBuild/artifact/bashbrew-amd64 -o "$HOME/work/bin/bashbrew" && chmod +x "$HOME/work/bin/bashbrew"
 
       - name: Clone docker official images repo
-        run: git clone --depth=1 https://github.com/docker-library/official-images ../docker-official-images
+        run: git clone --depth=1 https://github.com/docker-library/official-images "$HOME/work/docker-official-images"
 
       - name: Run build
         run: ./build ../docker-official-images
