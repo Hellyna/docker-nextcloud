@@ -39,8 +39,11 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Run build
-        run: ./build
+      - name: Get bashbrew
+        run: curl -fsSL https://doi-janky.infosiftr.net/job/bashbrew/job/master/lastSuccessfulBuild/artifact/bashbrew-amd64 -o ../bashbrew && chmod +x ../bashbrew
+
+      #- name: Run build
+      #  run: ./build
 
       #- name: Extract Docker metadata from docker.io
       #  id: docker-io-meta
