@@ -2,6 +2,8 @@
 
 set -xe
 
+export DOCKER_BUILDKIT=1
+
 upstream_docker_repo=nextcloud
 docker_repos=(
   quiexotic/nextcloud
@@ -26,7 +28,6 @@ cd "$repo_dir"
 tags="$(bashbrew --library "$library" list "$upstream_docker_repo" | cut -d ':' -f 2)"
 
 for tag in $tags; do
-  export DOCKER_BUILDKIT=1
   for repo in "${docker_repos[@]}"; do
     docker build --quiet --pull --build-arg "NEXTCLOUD_VERSION=$tag" -t "${repo}:${tag}" .
     docker push --quiet "${repo}:${tag}"
