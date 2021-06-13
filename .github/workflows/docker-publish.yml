@@ -59,4 +59,5 @@ jobs:
         continue-on-error: true
 
       - name: Run build
+        if: github.event_name != 'pull_request'
         run: ./.github/workflows/docker-build-push "$HOME/work/docker-official-images"
