@@ -50,5 +50,9 @@ jobs:
       - name: Clone docker official images repo
         run: git clone --depth=1 https://github.com/docker-library/official-images "$HOME/work/docker-official-images"
 
+      - name: Cache docker layers
+        uses: satackey/action-docker-layer-caching@v0.0.11
+        continue-on-error: true
+
       - name: Run build
         run: ./.github/workflows/docker-build-push "$HOME/work/docker-official-images"
