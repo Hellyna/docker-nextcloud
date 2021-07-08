@@ -57,6 +57,9 @@ jobs:
       - name: Cache docker layers
         uses: satackey/action-docker-layer-caching@v0.0.11
         continue-on-error: true
+        
+      - name: Clean docker images
+        run: docker image prune -f
 
       - name: Run build
         if: github.event_name != 'pull_request'
